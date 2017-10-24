@@ -29,7 +29,7 @@
     ref_vel += acc_increase;
   }
   ```
-As long as the current speed is less than the speed limit, it will keep increase. The idea of acc_cost is to control the speed using the distance from the car in front of us. 
+* As long as the current speed is less than the speed limit, it will keep increase. The idea of acc_cost is to control the speed using the distance from the car in front of us. 
 
 3. The car keeps the acceleration and jerk under the limit.
 ```C++
@@ -38,16 +38,38 @@ if (adjust_acc > 1.0)
   adjust_acc = 1.0;
 }
 ```
-And 
+* And 
 ```C++
 if (acc_increase > 1.0)
 {
   acc_increase =(abs(ref_vel_old-ref_vel) + acc_increase)/2;
 } 
 ```
-Both of this are way to control the acceleration. Either set a limitation of the acceleration or using average of pervious acceleration, so the change of acceleration will under the limit.
+* Both of this are way to control the acceleration. Either set a limitation of the acceleration or using average of pervious acceleration, so the change of acceleration will under the limit.
 
-For  
+```C++
+if(switch_lane)
+{
+  // reduce switch lane again too fast
+  if (car_d < (2 + 4 * lane + 0.5) && car_d > (2 + 4 * lane - 0.5))
+  {
+
+    if (left_lane_ok && (car_dist > safty_dist))
+    {
+      lane = lane -1;
+    }
+    else if (right_lane_ok && (car_dist > safty_dist))
+    {
+      lane = lane +1;
+    }
+  }
+}
+```
+* For Jerk limitation, I set another condition before the car switch between line. The car will not switch lane until the car is at the center of the lane. Most of the time, Jerk over limit when it try to switch two lane at a time.
+
+4.  
+
+
 
 
 
