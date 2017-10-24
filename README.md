@@ -53,7 +53,6 @@ if(switch_lane)
   // reduce switch lane again too fast
   if (car_d < (2 + 4 * lane + 0.5) && car_d > (2 + 4 * lane - 0.5))
   {
-
     if (left_lane_ok && (car_dist > safty_dist))
     {
       lane = lane -1;
@@ -67,7 +66,26 @@ if(switch_lane)
 ```
 * For Jerk limitation, I set another condition before the car switch between line. The car will not switch lane until the car is at the center of the lane. Most of the time, Jerk over limit when it try to switch two lane at a time.
 
-4.  
+4. The car will avoid collision, with other car.
+```C++ 
+if (d < (2 + 4 * lane +2) && d > (2 + 4 * lane -2))
+{                    
+ car_dist = check_car_s - car_s;
+ if ((check_car_s > car_s) && ((check_car_s - car_s) < 30))
+  {
+    too_close = true;
+    switch_lane = true;
+  }
+}
+```
+* To avoid collision. I use the sensor information and locate any car that is in front of the car, and active too_close flag. Base on the distance, I reduce the speed of the car. As long as the react-time is enough, it also can handle other car suddenly cut in front of the car.
+
+5. The car will stay inside the lane, except swtiching between lane. And the car is won't driving to the outside of the road base on the switch lane model.
+
+6. The car is able to switch between lanes. The car will change lanes when slow traffic ahead and other lanes is safe to switch.
+
+
+
 
 
 
