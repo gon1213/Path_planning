@@ -366,7 +366,6 @@ int main() {
                   adjust_acc = 1.0;
                 }
                 ref_vel += adjust_acc;
-                cout << "adjust_acc: +" << adjust_acc << endl;
 
 
               }
