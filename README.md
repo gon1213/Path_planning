@@ -87,17 +87,17 @@ if (d < (2 + 4 * lane +2) && d > (2 + 4 * lane -2))
 ### Reflection about model to generate path
 * The path planning model is create through a series of steps to generate smooth path. It starts by extracting the current vehicle state: Cartesian coordinates x, y and yaw; Frenet coordinates s and d; current speed of the vehicle. And then, it takes the unused part of the previous path and fills with addition waypoints to complete the path base on the decision made by sensor fusion data.
 
-*To decide the next move of our vehicle, our vehicle uses the information from the sensor fusion data, which contains other vehicles nearby. First, Our vehicle compare the information with the nearby vehicles, and check if any vehicles is blocked our current lane. Then it checks the safety of moving to another lanes. 
+* To decide the next move of our vehicle, our vehicle uses the information from the sensor fusion data, which contains other vehicles nearby. First, Our vehicle compare the information with the nearby vehicles, and check if any vehicles is blocked our current lane. Then it checks the safety of moving to another lanes. 
 If no other lane is safe to switch, it will remains on the current lane and keeps the same speed as the vehicle in front until other lanes safe to move on.
 
-*In order to make the lane switch experience better, it checks little bit more ahead on the other lane. If both side lane is safe to switch, it will also choose the lane which the car is far away from the our vehicle. 
+* In order to make the lane switch experience better, it checks little bit more ahead on the other lane. If both side lane is safe to switch, it will also choose the lane which the car is far away from the our vehicle. 
 
 * After our vehicle decides to switch lane, it generates three point in 30, 60 and 90 distance. and passing this three waypoints to a spline from the C++ spline library(http://kluge.in-chemnitz.de/opensource/spline/) to generate a smooth path.
 
-*Finally, the new waypoints are added to the existing waypoints until the max waypoints we set. 
+* Finally, the new waypoints are added to the existing waypoints until the max waypoints we set. 
 
 ###Improvement
-*Right now, the accelerate of the vehicle is control by variable, which sometime may causing unexpected outcome. Some of the variable is chosen by trying and only work in some condition. It will be better is we can generate a cost function that can meet all different condition. 
+* Right now, the accelerate of the vehicle is control by variable, which sometime may causing unexpected outcome. Some of the variable is chosen by trying and only work in some condition. It will be better is we can generate a cost function that can meet all different condition. 
 
 * We also can imply JMT(Jerk Minimum Trajectory) to choose the best trajectory. We currently using different variable to control the trajectory and limit the jerk. It will have similar jerk every time it switch lane. And it is not always the best trajectory with the minimum trajectory.  
 
