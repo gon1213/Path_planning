@@ -320,7 +320,7 @@ int main() {
             //safty distance to switch 
             //if the car is too close to the car in front of it, it can't switch 
             //it will has to slow down to a safty distance before switch.
-            double safty_dist = 8;
+            double safety_dist = 8;
             //slow down when get too close to other car
             if(switch_lane)
             {
@@ -328,11 +328,11 @@ int main() {
               if (car_d < (2 + 4 * lane + 0.5) && car_d > (2 + 4 * lane - 0.5))
               {
 
-                if (left_lane_ok && (car_dist > safty_dist))
+                if (left_lane_ok && (car_dist > safety_dist))
                 {
                   lane = lane -1;
                 }
-                else if (right_lane_ok && (car_dist > safty_dist))
+                else if (right_lane_ok && (car_dist > safety_dist))
                 {
                   lane = lane +1;
                 }
