@@ -96,7 +96,7 @@ If no other lane is safe to switch, it will remains on the current lane and keep
 
 * Finally, the new waypoints are added to the existing waypoints until the max waypoints we set. 
 
-###Improvement
+### Improvement
 * Right now, the accelerate of the vehicle is control by variable, which sometime may causing unexpected outcome. Some of the variable is chosen by trying and only work in some condition. It will be better is we can generate a cost function that can meet all different condition. 
 
 * We also can imply JMT(Jerk Minimum Trajectory) to choose the best trajectory. We currently using different variable to control the trajectory and limit the jerk. It will have similar jerk every time it switch lane. And it is not always the best trajectory with the minimum trajectory.  
